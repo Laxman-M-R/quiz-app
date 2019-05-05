@@ -1,0 +1,17 @@
+<h1>Pages#home</h1>
+
+<% if current_user %>
+	<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+	<% if current_user.admin %>
+		<%= link_to 'Users', users_users_page_path %>
+	<% end %>
+<% else %>
+<%= link_to 'Sign up', new_user_registration_path %>
+
+
+
+<%= link_to 'Sign in', new_user_session_path %>
+<% end %>
+
+<%= link_to 'Questions', questions_path %>
+

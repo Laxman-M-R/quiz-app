@@ -1,0 +1,19 @@
+<h1>Users</h1>
+<%= link_to 'Back', questions_path %>
+<% @users.each do |user| %>
+  
+  <h5><%= user.email %></h5>
+  
+  <%= user.admin %>
+  <%= form_for(user, url:  change_user_role_user_path(user), :method => :POST) do |f| %>
+  <%= f.check_box(:admin) %>
+  <%= f.submit 'Change admin status' %>
+  
+  <% end %>
+  <br>
+  <%= link_to "Destroy", admin_destroy_user_path(user), method: :delete, data: { confirm: "You sure?" } %>
+<% end %>
+
+<%= link_to 'Create User', new_user_path %>
+
+<%= link_to 'Home', root_path %>

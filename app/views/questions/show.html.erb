@@ -1,0 +1,22 @@
+<p>
+  <strong>Body:</strong>
+  <%= @question.body %>
+</p>
+
+<p>
+  <strong>Option:</strong>
+  <%= form_tag({controller: "questions", action: "check_answer"}, method: "get") do %>
+  <% @question.options.each do |p| %>
+  	<%= radio_button_tag('option',p.id) %>
+  	<%= p.body %>  	
+  <% end %>
+</p>
+<p><%= submit_tag 'Submit Answer' %></p>
+<% end %>
+<p>
+  <strong>User:</strong>
+  <%= @question.user.email %>
+</p>
+
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>
