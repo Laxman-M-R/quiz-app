@@ -4,14 +4,22 @@
 </p>
 
 <p>
-  <strong>Option:</strong>
+  <tr><strong>Options:</strong></tr><br />
+
+ 
+
   <%= form_tag({controller: "questions", action: "check_answer"}, method: "get") do %>
   <% @question.options.each do |p| %>
-  	<%= radio_button_tag('option',p.id) %>
-  	<%= p.body %>  	
+    <% if p.is_answer %>
+  	<%= radio_button_tag('option',true, p.id) %>
+  	<%= p.body %>
+    <% else %>
+    <%= radio_button_tag('option', p.id) %>
+    <%= p.body %>  	
+  <% end %>
   <% end %>
 </p>
-<p><%= submit_tag 'Submit Answer' %></p>
+
 <% end %>
 <p>
   <strong>User:</strong>

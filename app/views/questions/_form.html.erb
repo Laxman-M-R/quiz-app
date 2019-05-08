@@ -18,14 +18,24 @@
 
   <%= form.fields_for :options, question.options.each do |a| %>
     <div class="field">
-      <%= a.label :options %>
+      <%= a.label :options, 'options' %>
       <%= a.text_area :body %>
-      <%= a.check_box :is_answer, checked: true %>
+      <%= radio_button_tag "question[answer_id]", a.object.id, a.object.is_answer? %>  
+      <%= a.radio_button :is_answer, "answer" %> 
+      <%= a.label :is_answer, "answer" %>
+      <%= a.check_box :_destroy %>
+      <%= a.label :_destroy, 'delete' %>
     </div>    
   <% end %> 
+
  
 
+
+ <%= form.submit 'Add option', :name => "add_option" %>
+ <%= form.submit 'Delete options', :name => "remove_option" %>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit %>    
   </div>
+
 <% end %>
